@@ -38,7 +38,6 @@ async function removeNote(noteId) {
 
   console.log(chalk.bgGreen(`note with id: ${noteId} has been deleted`));
 }
-
 async function printNotes() {
   const notes = await getNotes();
 
@@ -52,4 +51,5 @@ module.exports = {
   addNote,
   printNotes,
   removeNote,
+  getNotes
 };
