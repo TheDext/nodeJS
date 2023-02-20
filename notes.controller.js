@@ -46,10 +46,21 @@ async function printNotes() {
     console.log(chalk.blue("id:", id, "|", "title:", title));
   });
 }
+async function editNote(data) {
+  const { id: dataId, title: dataTitle } = data;
+  const notes = await getNotes();
+
+  const noteTitleIndex = notes.findIndex((note) => note.id === dataId);
+  notes[noteTitleIndex].title = dataTitle;
+  await fs.writeFile(notesPath, JSON.stringify(notes));
+  
+  return notes;
+}
 
 module.exports = {
   addNote,
   printNotes,
   removeNote,
-  getNotes
+  getNotes,
+  editNote,
 };
